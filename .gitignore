@@ -13,5 +13,4 @@ secrets.xml
 /captures
 .externalNativeBuild
 google-services.json
-google-services.json
 local.properties
