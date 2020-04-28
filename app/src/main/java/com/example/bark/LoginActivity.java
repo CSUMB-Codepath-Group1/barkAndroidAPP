@@ -3,6 +3,7 @@ package com.example.bark;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,11 +22,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginActivity";
 
+    Button loginBTN;
+    Button SignInbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -46,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
          if (auth.getCurrentUser() != null){
              // Already signed In
              Toast.makeText(getApplicationContext(),"User is Already signed in", Toast.LENGTH_SHORT);
+             goMainActivity();
 
          }else{
              // Not Signed In
@@ -57,6 +61,10 @@ public class LoginActivity extends AppCompatActivity {
 
      }
 
+     private void goMainActivity() {
+        Intent i = new Intent(LoginActivity.this , MainActivity.class);
+        startActivity(i);
+     }
 
 
 }
