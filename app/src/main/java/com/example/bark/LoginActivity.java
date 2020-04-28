@@ -30,6 +30,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if(auth.getCurrentUser() != null) {
+            goMainActivity();
+        }
+
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
@@ -65,6 +70,5 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(LoginActivity.this , MainActivity.class);
         startActivity(i);
      }
-
 
 }
