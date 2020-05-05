@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="horizontal">
+
+<Button
+    android:id="@+id/newEvent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Create">
+
+</Button>
+
+<TextView
+    android:id="@+id/events_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="50dp"
+    android:layout_marginRight="50dp"
+    android:text="Events"
+    android:textSize="40dp"
+    android:layout_toEndOf="@+id/newEvent">
+
+</TextView>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/listOfEvents"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.ComposeFragment">
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/events_title"
+    android:layout_marginTop="75dp" />
 
-    <EditText
-        android:ems="10"
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description. . . " />
+<Button
+    android:id="@+id/logoutBtnEvents"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toEndOf="@+id/events_title"
+    android:text="logout">
 
-    <Button
-        android:id="@+id/btnCapturePicture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Take Picture" />
+</Button>
 
-    <ImageView
-        android:id="@+id/ivPostImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:srcCompat="@tools:sample/avatars" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnSubmit"
-        android:text="Submit" />
 
-</LinearLayout>
+
+</RelativeLayout>
