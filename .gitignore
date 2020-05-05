@@ -14,3 +14,4 @@ secrets.xml
 .externalNativeBuild
 google-services.json
 local.properties
+/app/app.iml
