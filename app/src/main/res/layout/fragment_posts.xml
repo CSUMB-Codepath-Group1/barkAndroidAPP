@@ -4,26 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ComposeFragment">
-
-    <EditText
-        android:ems="10"
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description. . . " />
-
-    <Button
-        android:id="@+id/btnCapturePicture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Take Picture" />
+    tools:context=".fragments.EventsFragment">
 
     <ImageView
-        android:id="@+id/ivPostImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:id="@+id/addPost"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_create_post" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

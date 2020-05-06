@@ -7,10 +7,9 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-import com.example.bark.fragments.ComposeFragment;
+import com.example.bark.fragments.EventsFragment;
 import com.example.bark.fragments.PostsFragment;
 import com.example.bark.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "HOME!",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_compose:
-                        fragment= new ComposeFragment();
+                        fragment= new EventsFragment();
                         Toast.makeText(MainActivity.this, "COMPOSE!",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_profile:

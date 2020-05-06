@@ -7,13 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class EventsActivity extends AppCompatActivity {
@@ -33,7 +29,7 @@ public class EventsActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_compose);
+        setContentView(R.layout.fragment_events);
         btnLogout = findViewById(R.id.logoutBtnEvents);
         btnCreateEvent = findViewById(R.id.newEvent);
 

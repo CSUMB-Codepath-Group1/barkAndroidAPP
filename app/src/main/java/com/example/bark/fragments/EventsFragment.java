@@ -19,7 +19,7 @@ import com.example.bark.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ComposeFragment extends Fragment {
+public class EventsFragment extends Fragment {
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE= 42;
     private EditText etDescription;
     private Button btnCaptureImage;
@@ -27,7 +27,7 @@ public class ComposeFragment extends Fragment {
     private Button btnSubmit;
 
 
-    public ComposeFragment() {
+    public EventsFragment() {
         // Required empty public constructor
     }
 
@@ -36,7 +36,7 @@ public class ComposeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_compose, container, false);
+        return inflater.inflate(R.layout.fragment_events, container, false);
     }
 
     @Override
