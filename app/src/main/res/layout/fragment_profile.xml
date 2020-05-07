@@ -1,4 +1,4 @@
-xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,8 +34,9 @@ xml version="1.0" encoding="utf-8"?>
                 android:layout_marginStart="90dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="80dp"
-                android:onClick="handleImageClick"
                 app:srcCompat="@drawable/ic_person_black_24dp" />
+<!--            android:onClick="handleImageClick"-->
+
 
         </RelativeLayout>
 
@@ -50,8 +51,8 @@ xml version="1.0" encoding="utf-8"?>
             android:layout_marginStart="17dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="17dp"
-            android:text="UPDATE PROFILE ACCOUNT"
-            android:onClick="updateProfile" />
+            android:text="UPDATE PROFILE ACCOUNT" />
+<!--        android:onClick="updateProfile"-->
 
         <ProgressBar
             android:id="@+id/progressBar"
