@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.bark.fragments.EventsFragment;
 import com.example.bark.fragments.PostsFragment;
 import com.example.bark.fragments.ProfileFragment;
+import com.example.bark.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

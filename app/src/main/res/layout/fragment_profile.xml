@@ -6,16 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+
+
         android:background="@color/colorPrimaryDark">
 
         <RelativeLayout
@@ -34,9 +30,8 @@
                 android:layout_marginStart="90dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="80dp"
-                app:srcCompat="@drawable/ic_person_black_24dp" />
-<!--            android:onClick="handleImageClick"-->
-
+                app:srcCompat="@drawable/ic_person_black_24dp"/>
+<!--                android:onClick="handleImageClick" />-->
 
         </RelativeLayout>
 
@@ -45,14 +40,14 @@
             android:id="@+id/updateProfileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/constraint"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="17dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginEnd="13dp"
+            android:layout_below="@+id/constraint"
             android:text="UPDATE PROFILE ACCOUNT" />
 <!--        android:onClick="updateProfile"-->
+
 
         <ProgressBar
             android:id="@+id/progressBar"
