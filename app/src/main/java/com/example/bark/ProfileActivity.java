@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_profile);
+        setContentView(R.layout.activity_profile);
 
         profileImageView = findViewById(R.id.profileImageView);
         displayNameEditText = findViewById(R.id.username_info);
@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity{
         progressBar = findViewById(R.id.progressBar);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+        progressBar.setVisibility(View.VISIBLE);
         if (user != null) {
             Log.d(TAG, "onCreate: " + user.getDisplayName());
             if (user.getDisplayName() != null) {
@@ -73,8 +73,10 @@ public class ProfileActivity extends AppCompatActivity{
                         .into(profileImageView);
             }
         }
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
+
     public void updateProfile (final View view) {
 
         view.setEnabled(false);
