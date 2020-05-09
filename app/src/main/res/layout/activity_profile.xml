@@ -12,21 +12,23 @@
     <RelativeLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="168dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/bacround_gradient"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
+
         <ImageView
             android:id="@+id/profileImageView"
-            android:layout_width="234dp"
-            android:layout_height="149dp"
-            android:layout_marginStart="90dp"
+            android:layout_width="400dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="80dp"
-            app:srcCompat="@drawable/ic_person_black_24dp"
-            android:onClick="handleImageClick" />
+            android:layout_marginEnd="50dp"
+            android:onClick="handleImageClick"
+            app:srcCompat="@drawable/profile_pic" />
+
 
     </RelativeLayout>
 
@@ -72,11 +74,11 @@
         android:layout_width="54dp"
         android:layout_height="35dp"
         android:layout_below="@+id/account_info"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="14dp"
         app:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
     <EditText
-        android:id="@+id/username_info"
+        android:id="@+id/displayNameEditText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/account_info"
@@ -94,10 +96,10 @@
         app:srcCompat="@drawable/fui_ic_mail_white_24dp" />
 
     <EditText
-        android:id="@+id/email_info"
+        android:id="@+id/displayEmailEditText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/username_info"
+        android:layout_below="@+id/displayNameEditText"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/email_logo"
@@ -112,24 +114,34 @@
         app:srcCompat="@drawable/fui_ic_phone_white_24dp" />
 
     <EditText
-        android:id="@+id/phone_info"
+        android:id="@+id/displayPhoneEditText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/email_info"
+        android:layout_below="@+id/displayEmailEditText"
         android:layout_marginStart="5dp"
         android:layout_marginTop="7dp"
         android:layout_toEndOf="@+id/phone_logo"
         android:hint="PHONE NUMBER" />
 
+    <ImageView
+        android:id="@+id/description_logo"
+        android:layout_width="55dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/phone_logo"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
     <EditText
-        android:id="@+id/description_text"
+        android:id="@+id/displayDescriptionEditText"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_below="@+id/phone_info"
+        android:layout_below="@+id/displayPhoneEditText"
+        android:layout_toEndOf="@+id/description_logo"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="0dp"
         android:ems="10"
         android:hint="DESCRIPTION ...."/>
+
 
 </RelativeLayout>

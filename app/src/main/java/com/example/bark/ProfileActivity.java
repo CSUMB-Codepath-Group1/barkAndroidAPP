@@ -55,12 +55,11 @@ public class ProfileActivity extends AppCompatActivity{
         setContentView(R.layout.activity_profile);
 
         profileImageView = findViewById(R.id.profileImageView);
-        displayNameEditText = findViewById(R.id.username_info);
+        displayNameEditText = findViewById(R.id.displayNameEditText);
         updateProfileButton = findViewById(R.id.updateProfileButton);
         progressBar = findViewById(R.id.progressBar);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        progressBar.setVisibility(View.VISIBLE);
         if (user != null) {
             Log.d(TAG, "onCreate: " + user.getDisplayName());
             if (user.getDisplayName() != null) {
@@ -73,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity{
                         .into(profileImageView);
             }
         }
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
 
     }
 
@@ -108,8 +107,11 @@ public class ProfileActivity extends AppCompatActivity{
                     }
                 });
     }
+    //Handle Image Click (OnClick Listener)
     public void handleImageClick(View view) {
+        //Take an image from the App. Start a new Intent to for Capturing an image.
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, TAKE_IMAGE_CODE);
         }
@@ -122,7 +124,9 @@ public class ProfileActivity extends AppCompatActivity{
             switch (resultCode) {
                 case RESULT_OK:
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    //Set Image to your Profile
                     profileImageView.setImageBitmap(bitmap);
+                    //Save Profile Image to FireBase
                     handleUpload(bitmap);
             }
         }
