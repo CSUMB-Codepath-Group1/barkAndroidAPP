@@ -1,4 +1,4 @@
-# BARK - Social Media App
+# Kooky Candidate
 
 ## Overview
 
