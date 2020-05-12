@@ -47,26 +47,28 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
 
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="130dp"
         android:src="@drawable/bark" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="300dp"
         android:text="Log in"
         android:id="@+id/login"
         android:layout_below="@+id/logo"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        android:alpha="0.7" />
     <Button
         android:text="Register"
         android:id="@+id/register"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/login"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        android:alpha="0.7"/>
 
 </RelativeLayout>
