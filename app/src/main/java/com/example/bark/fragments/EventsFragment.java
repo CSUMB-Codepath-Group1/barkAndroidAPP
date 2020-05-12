@@ -61,7 +61,7 @@ public class EventsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         System.out.println("Entered events activity");
-
+//TODO: figure out how to populate recycler view through firebase
         FirebaseRecyclerOptions<Event> options;
         final FirebaseRecyclerAdapter<Event, eventHolder> adapter;
 
@@ -70,7 +70,7 @@ public class EventsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.listOfEvents);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.
+//        recyclerView.
         recyclerView.setHasFixedSize(false);
         ref = FirebaseDatabase.getInstance().getReference().child("events");
         final FirebaseAuth instance = FirebaseAuth.getInstance();
