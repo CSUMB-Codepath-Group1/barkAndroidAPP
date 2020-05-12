@@ -68,6 +68,7 @@ public class AddPostActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         etDescription = findViewById(R.id.etDescription);
         cancelAdd = findViewById(R.id.cancelAdd);
+
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         pd = new ProgressDialog(this);
@@ -195,6 +196,7 @@ public class AddPostActivity extends AppCompatActivity {
                         try{
                             bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
                         } catch (IOException e) {
+                            Toast.makeText(AddPostActivity.this, "Error, " +e, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
