@@ -8,20 +8,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.bark.AddPostActivity;
+import com.example.bark.LoginActivity;
 import com.example.bark.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static com.squareup.okhttp.internal.Internal.instance;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PostsFragment extends Fragment {
+    final private String POSTS_FRAGMENT = "EventsFragment";
 
     private ImageView addPost;
+    private Button btnLogout;
+    DatabaseReference ref;
 
 
     public PostsFragment() {
@@ -41,6 +52,21 @@ public class PostsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         addPost = view.findViewById(R.id.addPost);
+        btnLogout = view.findViewById(R.id.logoutBtn);
+
+        ref = FirebaseDatabase.getInstance().getReference().child("posts");
+        final FirebaseAuth instance = FirebaseAuth.getInstance();
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(POSTS_FRAGMENT, "Logging out.");
+                //logs user out using firebase
+                Log.d(POSTS_FRAGMENT, "logging off: "+instance.getCurrentUser());
+                signOut(instance);
+                goLoginActivity();
+            }
+        });
 
         addPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,5 +74,24 @@ public class PostsFragment extends Fragment {
                 startActivity(new Intent(getActivity(), AddPostActivity.class));
             }
         });
+    }
+
+    public void goLoginActivity()
+    {
+        //kicks user back out to the login page.
+        Intent intent = new Intent(getContext(), LoginActivity.class);
+        startActivity(intent);
+        intent.putExtra("finish", true);
+        // allows us to clear the activities that were being held in the stack prior to logging out
+        // this means that the user cannot do a 'shadow login' when they hit back after signing out and be
+        // signed in as a 'null' user
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+    private void signOut(FirebaseAuth instance)
+    {
+        instance.signOut();
     }
 }
