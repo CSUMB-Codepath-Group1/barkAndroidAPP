@@ -1,67 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:gravity="center"
     tools:context=".RegisterActivity">
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:src="@drawable/bark"/>
+        android:id="@+id/bckgrndImageView7"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/register" />
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/bark" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_below="@+id/logo"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Username"
         android:id="@+id/username"
         android:layout_marginTop="15dp"
         android:padding="10dp"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Full name"
         android:id="@+id/fullname"
         android:layout_marginTop="15dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:layout_below="@+id/username"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Email"
         android:id="@+id/email"
         android:inputType="textEmailAddress"
         android:layout_marginTop="15dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:layout_below="@+id/fullname"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Password"
         android:id="@+id/password"
         android:inputType="textPassword"
         android:layout_marginTop="15dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:layout_below="@+id/email"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:text="Register"
         android:id="@+id/register"
         android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/password"
+        android:alpha="0.7"
         />
 
     <TextView
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already have an sccount? Log in"
         android:id="@+id/txt_login"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/register"
+        android:textColor="#FFFFFF"
+        />
 
-</LinearLayout>
+</RelativeLayout>
