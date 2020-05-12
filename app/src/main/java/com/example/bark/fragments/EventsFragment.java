@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bark.LoginActivity;
+import com.example.bark.MakeEventActivity;
 import com.example.bark.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -63,6 +64,8 @@ public class EventsFragment extends Fragment {
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MakeEventActivity.class);
+                startActivity(intent);
                 Toast.makeText(getContext(),"Attempting to create new event", Toast.LENGTH_SHORT).show();
             }
         });
