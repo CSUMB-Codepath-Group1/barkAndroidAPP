@@ -1,12 +1,14 @@
 package com.example.bark;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,12 +18,22 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bark.fragments.EventsFragment;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class MakeEventActivity extends AppCompatActivity {
@@ -29,11 +41,22 @@ public class MakeEventActivity extends AppCompatActivity {
     EditText eventName;
     EditText eventDate;
     EditText eventTime;
+    EditText eventDescription;
     Button submitEvent;
+    ProgressDialog pd;
+
 
     //TODO: add the date and time edit texts
 
     FirebaseAuth auth;
+    DocumentReference eventReference;
+    FirebaseFirestore firebaseFirestore;
+    //things needed to make the actual event in the database
+    String finalName ="";
+    String finalDate="";
+    String finalTime="";
+    String finalDescription ="";
+    //-----------------------
     @Override
     protected void onCreate(Bundle savedInstance)
     {
@@ -44,6 +67,8 @@ public class MakeEventActivity extends AppCompatActivity {
         submitEvent = findViewById(R.id.submitEvent);
         eventDate = findViewById(R.id.chooseDate);
         eventTime = findViewById(R.id.chooseTime);
+        eventDescription = findViewById(R.id.description);
+
         eventDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,12 +124,12 @@ public class MakeEventActivity extends AppCompatActivity {
                         if(hourOfDay < 12)
                         {
                             AMorPM = "AM";
-                            eventTime.setText(hourOfDay+":" + minute + " " + AMorPM);
+                            eventTime.setText(hourOfDay+" : " + minute + " " + AMorPM);
                         }
                         else
                         {
                             AMorPM = "PM";
-                            eventTime.setText((hourOfDay-12)+":" + minute + " " + AMorPM);
+                            eventTime.setText((hourOfDay)+" : " + minute + " " + AMorPM);
                         }
                     }
                 });
@@ -130,10 +155,46 @@ public class MakeEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 auth = FirebaseAuth.getInstance();
-                String finalName = eventName.getText().toString();
-                String finalDate = eventDate.getText().toString();
-                String finalTime = eventTime.getText().toString();
+                finalName = eventName.getText().toString();
+                finalDate = eventDate.getText().toString();
+                finalTime = eventTime.getText().toString();
+                finalDescription = eventDescription.getText().toString();
+                pd = new ProgressDialog(MakeEventActivity.this);
+                pd.setMessage("Please wait...");
+                pd.show();
+                registerEvent(finalName, finalDate, finalTime, finalDescription);
+            }
+        });
+    }
+    public void registerEvent(final String eventName, final String eventDate, final String eventTime, final String description)
+    {
+        FirebaseUser curr_user = auth.getCurrentUser();
+        String userID = curr_user.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        HashMap<String, Object> eventMap = new HashMap<>();
+        eventMap.put("name", finalName);
+        eventMap.put("when", finalDate +" at " + finalTime);
+        eventMap.put("organizer", curr_user.getDisplayName());
+        eventMap.put("description", finalDescription);
 
+        db.collection("events")
+                .add(eventMap)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(MAKE_EVENT_ACTIVITY, "event added with this id: "+ documentReference.getId());
+                pd.dismiss();
+                Intent intent = new Intent(MakeEventActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                Toast.makeText(MakeEventActivity.this, "Event Made!", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(MAKE_EVENT_ACTIVITY, "Error, exception caught: " + e);
+                Toast.makeText(MakeEventActivity.this, "Unable to make your event. Try again later.", Toast.LENGTH_SHORT).show();
+                pd.dismiss();
             }
         });
     }

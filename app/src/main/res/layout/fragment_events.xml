@@ -1,48 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     tools:context=".fragments.EventsFragment">
 
-<Button
-    android:id="@+id/newEvent"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Create">
 
-</Button>
-
-<TextView
-    android:id="@+id/events_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginLeft="50dp"
-    android:layout_marginRight="50dp"
-    android:text="Events"
-    android:textSize="40dp"
-    android:layout_toEndOf="@+id/newEvent">
-
-</TextView>
-
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/listOfEvents"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/events_title"
-    android:layout_marginTop="75dp" />
-
-<Button
-    android:id="@+id/logoutBtnEvents"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_toEndOf="@+id/events_title"
-    android:text="logout">
-
-</Button>
+    <TextView
+        android:id="@+id/events_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Events"
+        android:textSize="40dp"
+        android:layout_toEndOf="@+id/newEvent"/>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listOfEvents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/events_title"
+        android:layout_marginTop="75dp" />
+    <Button
+        android:id="@+id/logoutBtnEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/events_title"
+        android:text="logout"/>
 
-</RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/newEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_add" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
