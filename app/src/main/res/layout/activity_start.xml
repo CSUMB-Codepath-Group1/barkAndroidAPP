@@ -1,35 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="8dp"
     android:layout_height="match_parent"
     tools:context=".StartActivity">
+    <ViewFlipper
+        android:id="@+id/bckgrndViewFlipper1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:id="@+id/bckgrndImageView7"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/happydog" />
+
+        <ImageView
+            android:id="@+id/bckgrndImageView6"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/waterdog" />
+
+        <ImageView
+            android:id="@+id/bckgrndImageView5"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/runningdogs" />
+
+        <ImageView
+            android:id="@+id/bckgrndImageView4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pettingdog" />
+
+
+
+
+    </ViewFlipper>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:src="@drawable/bark"/>
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="120dp"
+        android:src="@drawable/bark" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
         android:text="Log in"
         android:id="@+id/login"
-        android:textColor="@color/colorPrimary"
-        />
-
+        android:layout_below="@+id/logo"
+        android:textColor="@color/colorPrimary"/>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="Register"
         android:id="@+id/register"
-        android:textColor="@color/colorPrimary"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/login"
+        android:textColor="@color/colorPrimary"/>
 
-</LinearLayout>
+</RelativeLayout>
