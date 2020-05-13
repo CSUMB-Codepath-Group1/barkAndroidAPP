@@ -8,12 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -23,10 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bark.fragments.PostsFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -35,11 +30,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class AddPostActivity extends AppCompatActivity {
     private static final String TAG = "AddPostActivity";
@@ -49,18 +42,21 @@ public class AddPostActivity extends AppCompatActivity {
     private ImageView ivPostImage;
     private Button btnSubmit;
     private TextView cancelAdd;
+    private boolean pictureAdded;
 
     private FirebaseAuth mAuth;
 
     ProgressDialog pd;
 
     String username;
+    private String downLoadUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
+        pictureAdded = false;
         mAuth = FirebaseAuth.getInstance();
 
         btnCaptureImage = findViewById(R.id.btnCapturePicture);
@@ -97,7 +93,7 @@ public class AddPostActivity extends AppCompatActivity {
                     Toast.makeText(AddPostActivity.this, "Description cannot be empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(ivPostImage == null){
+                if(!pictureAdded){
                     Toast.makeText(AddPostActivity.this, "No image!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -117,14 +113,12 @@ public class AddPostActivity extends AppCompatActivity {
 
         final String timestamp = String.valueOf(System.currentTimeMillis());
 
-        String filePathAndName = "Posts/" + "post_" + timestamp;
-
         HashMap<String, Object> map = new HashMap<>();
         map.put("uId", userID);
         map.put("uName", firebaseUser.getDisplayName());
         map.put("postId", timestamp);
         map.put("description", description);
-        //map.put("image", downloadUri);
+        map.put("image", downLoadUrl);
         db.collection("posts")
                 .add(map)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -186,6 +180,7 @@ public class AddPostActivity extends AppCompatActivity {
                     //Set Image to your Profile
                     ivPostImage.setImageBitmap(bitmap);
                     //Save Profile Image to FireBase
+                    handleUpload(bitmap);
             }
         }
         if (requestCode == 1) {
@@ -201,7 +196,38 @@ public class AddPostActivity extends AppCompatActivity {
                         }
                     }
                     ivPostImage.setImageBitmap(bm);
+                    handleUpload(bm);
             }
         }
+    }
+
+    private void handleUpload(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final StorageReference reference = FirebaseStorage.getInstance().getReference()
+                .child("postImages")
+                .child(uid + ".jpeg");
+
+        reference.putBytes(baos.toByteArray())
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        downLoadUrl = getDownloadUrl(reference);
+                        pictureAdded = true;
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "onFailure: ",e.getCause() );
+                    }
+                });
+    }
+
+    private String getDownloadUrl(StorageReference reference) {
+        downLoadUrl = String.valueOf(reference.getDownloadUrl());
+        return downLoadUrl;
     }
 }
