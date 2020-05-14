@@ -69,11 +69,21 @@
         android:gravity="center"
         android:text="Account Information" />
 
+    <EditText
+        android:id="@+id/displayUserNameEditText"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_info"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="35dp"
+        android:hint="FULLNAME" />
+
     <ImageView
         android:id="@+id/username_logo"
         android:layout_width="54dp"
         android:layout_height="35dp"
-        android:layout_below="@+id/account_info"
+        android:layout_below="@+id/displayUserNameEditText"
         android:layout_marginTop="14dp"
         app:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
@@ -81,7 +91,7 @@
         android:id="@+id/displayNameEditText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/account_info"
+        android:layout_below="@+id/displayUserNameEditText"
         android:layout_marginStart="5dp"
         android:layout_marginTop="12dp"
         android:layout_toEndOf="@+id/username_logo"
