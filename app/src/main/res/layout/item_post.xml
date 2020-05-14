@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="#000111">
+
         <TextView
-            android:textColor="#000"
+            android:textColor="#fff"
             android:id="@+id/uName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,8 +38,13 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:text="This is exampe Text"
-            android:textColor="#000" />
+            android:textColor="#fff" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFFFFF"/>
     </RelativeLayout>
+
 
 
 </androidx.cardview.widget.CardView>

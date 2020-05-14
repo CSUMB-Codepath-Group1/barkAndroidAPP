@@ -51,7 +51,7 @@ public class StartActivity extends AppCompatActivity {
 
         //sets auto flipping
         viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(3000);
+        viewFlipper.setFlipInterval(2000);
         viewFlipper.startFlipping();
 
         login = findViewById(R.id.login);
