@@ -118,6 +118,8 @@ public class AddPostActivity extends AppCompatActivity {
 
         final FirebaseUser firebaseUser = mAuth.getCurrentUser();
         final String userID = firebaseUser.getUid();
+
+        //handleUpload();
         
         username = getUserName(firebaseUser, db);
 
@@ -232,6 +234,9 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     private void handleUpload() {
+        new ProgressDialog(AddPostActivity.this);
+        pd.setMessage("Adding image...");
+        pd.show();
         final StorageReference reference = FirebaseStorage.getInstance().getReference()
                 .child("postImages")
                 .child(timestamp + ".jpeg");
@@ -258,10 +263,12 @@ public class AddPostActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
                     downloadUri = task.getResult();
+                    pd.dismiss();
                     //Toast.makeText(AddPostActivity.this, "Successful" + downloadUri, Toast.LENGTH_SHORT).show();
                 } else {
                     // Handle failures
                     // ...
+                    pd.dismiss();
                     Toast.makeText(AddPostActivity.this, "Unsuccessful" + downloadUri, Toast.LENGTH_SHORT).show();
                 }
             }
