@@ -116,19 +116,20 @@ public class MakeEventActivity extends AppCompatActivity {
                 //sets date to put into the time edit text
                 Integer hour = tp.getCurrentHour();
                 Integer minute = tp.getCurrentMinute();
+                tp.setIs24HourView(false);
                 tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
                     @Override
                     public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                        String AMorPM;
+//                        String AMorPM;
                         if(hourOfDay < 12)
                         {
-                            AMorPM = "AM";
-                            eventTime.setText(hourOfDay+" : " + minute + " " + AMorPM);
+//                            AMorPM = "AM";
+                            eventTime.setText(hourOfDay+":" + minute + " ");
                         }
                         else
                         {
-                            AMorPM = "PM";
-                            eventTime.setText((hourOfDay)+" : " + minute + " " + AMorPM);
+//                            AMorPM = "PM";
+                            eventTime.setText((hourOfDay)+":" + minute + " ");
                         }
                     }
                 });
@@ -156,9 +157,9 @@ public class MakeEventActivity extends AppCompatActivity {
                 auth = FirebaseAuth.getInstance();
                 finalName = eventName.getText().toString();
                 finalDate = eventDate.getText().toString();
-                finalDate = eventTime.getText().toString();
+                finalTime = eventTime.getText().toString();
                 finalDescription =eventDescription.getText().toString();
-                if(finalName.isEmpty() || finalDate.isEmpty() || finalTime.isEmpty() || !finalDescription.isEmpty())
+                if((finalName.isEmpty() || finalDate.isEmpty() || finalTime.isEmpty() || finalDescription.isEmpty()))
                 {
                     Toast.makeText(getApplicationContext(), "Unable to make event. All fields are required.", Toast.LENGTH_SHORT).show();
                     eventName.setText("");
@@ -184,7 +185,7 @@ public class MakeEventActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         HashMap<String, Object> eventMap = new HashMap<>();
         eventMap.put("name", eventName);
-        eventMap.put("when", eventDate +" at " + eventTime);
+        eventMap.put("datetime", ""+ eventDate+ " at " + eventTime);
         eventMap.put("organizer", curr_user.getDisplayName());
         eventMap.put("description", description);
         eventMap.put("uID", userID);

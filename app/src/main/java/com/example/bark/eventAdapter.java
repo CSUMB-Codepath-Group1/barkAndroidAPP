@@ -8,11 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bark.Event;
-import com.example.bark.R;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -28,7 +24,7 @@ public class eventAdapter extends FirestoreRecyclerAdapter<Event, eventAdapter.e
         holder.name.setText(model.getName());
         holder.description.setText(model.getDescription());
         holder.organizer.setText(model.getOrganizer());
-        holder.date.setText(model.getDatetime());
+        holder.datetime.setText(model.getDatetime());
     }
 
     @NonNull
@@ -41,15 +37,13 @@ public class eventAdapter extends FirestoreRecyclerAdapter<Event, eventAdapter.e
 
     class eventHolder extends RecyclerView.ViewHolder {
         TextView name;
-        TextView date;
-        TextView time;
+        TextView datetime;
         TextView description;
         TextView organizer;
         public eventHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            date = itemView.findViewById(R.id.datetime);
-//            time = itemView.findViewById(R.id.chooseTime);
+            datetime = itemView.findViewById(R.id.date);
             description = itemView.findViewById(R.id.description);
             organizer = itemView.findViewById(R.id.organizer);
         }
