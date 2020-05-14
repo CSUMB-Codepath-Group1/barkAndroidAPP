@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -89,7 +90,10 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+
                             FirebaseUser firebaseUser = auth.getCurrentUser();
+                            UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(username.toLowerCase()).build();
+                            firebaseUser.updateProfile(request);
                             String userID = firebaseUser.getUid();
 
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -99,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                             map.put("fullname", fullname);
                             map.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/instagramtest-fcbef.appspot.com/o/placeholder.png?alt=media&token=b09b809d-a5f8-499b-9563-5252262e9a49");
                             map.put("bio", "");
+                            map.put("phone","");
 
                             db.collection("users")
                                     .add(map)
