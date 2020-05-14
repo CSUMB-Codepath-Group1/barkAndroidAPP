@@ -42,10 +42,13 @@ public class ProfileActivity extends AppCompatActivity{
 
     ImageView profileImageView;
     EditText displayNameEditText;
+    EditText displayEmailEditText;
+    EditText displayPhoneEditText;
     Button updateProfileButton;
     ProgressBar progressBar;
 
     String DISPLAY_NAME = null;
+    String PHONENUMBER = null;
     String PROFILE_IMAGE_URL = null;
     int TAKE_IMAGE_CODE = 10001;
 
@@ -56,15 +59,27 @@ public class ProfileActivity extends AppCompatActivity{
 
         profileImageView = findViewById(R.id.profileImageView);
         displayNameEditText = findViewById(R.id.displayNameEditText);
+        displayEmailEditText = findViewById(R.id.displayEmailEditText);
+        displayPhoneEditText = findViewById(R.id.displayPhoneEditText);
         updateProfileButton = findViewById(R.id.updateProfileButton);
         progressBar = findViewById(R.id.progressBar);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
             Log.d(TAG, "onCreate: " + user.getDisplayName());
             if (user.getDisplayName() != null) {
+
                 displayNameEditText.setText(user.getDisplayName());
                 displayNameEditText.setSelection(user.getDisplayName().length());
+            }
+            if(user.getEmail() != null){
+                displayEmailEditText.setText(user.getEmail());
+                displayEmailEditText.setSelection(user.getEmail().length());
+            }
+            if(user.getPhoneNumber() != null){
+                displayPhoneEditText.setText(user.getPhoneNumber());
+                displayPhoneEditText.setSelection(user.getPhoneNumber().length());
             }
             if (user.getPhotoUrl() != null) {
                 Glide.with(this)
@@ -77,11 +92,11 @@ public class ProfileActivity extends AppCompatActivity{
     }
 
     public void updateProfile (final View view) {
-
         view.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
 
         DISPLAY_NAME = displayNameEditText.getText().toString();
+        PHONENUMBER = displayPhoneEditText.getText().toString();
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
