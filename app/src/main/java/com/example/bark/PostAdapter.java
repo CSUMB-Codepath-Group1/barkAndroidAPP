@@ -1,8 +1,10 @@
 package com.example.bark;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+
+import java.util.List;
 
 public class PostAdapter extends FirestoreRecyclerAdapter<Post, PostAdapter.PostHolder> {
 
@@ -40,10 +44,12 @@ public class PostAdapter extends FirestoreRecyclerAdapter<Post, PostAdapter.Post
     class PostHolder extends RecyclerView.ViewHolder {
         TextView uName;
         TextView description;
+        ImageView image;
         public PostHolder(@NonNull View itemView) {
             super(itemView);
             uName = itemView.findViewById(R.id.uName);
             description = itemView.findViewById(R.id.description);
+            image = itemView.findViewById(R.id.image);
         }
     }
 }

@@ -7,11 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".fragments.EventsFragment">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_add" />
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="logout" />
+        android:text="logout"
+        android:layout_marginLeft="300dp"/>
 
     <TextView
         android:id="@+id/postsTitle"
@@ -23,12 +30,7 @@
         android:text="Posts"
         android:textSize="40dp" />
 
-    <ImageView
-        android:id="@+id/addPost"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:src="@drawable/ic_create_post"
-        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
         android:layout_width="match_parent"

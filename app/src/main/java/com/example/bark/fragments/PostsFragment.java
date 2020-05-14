@@ -29,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import static com.squareup.okhttp.internal.Internal.instance;
 
@@ -38,7 +40,6 @@ import static com.squareup.okhttp.internal.Internal.instance;
 public class PostsFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference postRef = db.collection("posts");
-
     private PostAdapter adapter;
     final private String POSTS_FRAGMENT = "EventsFragment";
 
