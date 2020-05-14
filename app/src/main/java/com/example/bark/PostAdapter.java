@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class PostAdapter extends FirestoreRecyclerAdapter<Post, PostAdapter.Post
     protected void onBindViewHolder(@NonNull PostHolder holder, int position, @NonNull Post model) {
         holder.uName.setText(model.getuName());
         holder.description.setText(model.getDescription());
+        Picasso.get().load(model.getImage()).into(holder.image);
     }
 
     @NonNull
