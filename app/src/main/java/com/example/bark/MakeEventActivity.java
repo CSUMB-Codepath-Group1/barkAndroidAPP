@@ -2,8 +2,7 @@ package com.example.bark;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
-import android.app.TimePickerDialog.OnTimeSetListener;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -157,12 +156,24 @@ public class MakeEventActivity extends AppCompatActivity {
                 auth = FirebaseAuth.getInstance();
                 finalName = eventName.getText().toString();
                 finalDate = eventDate.getText().toString();
-                finalTime = eventTime.getText().toString();
-                finalDescription = eventDescription.getText().toString();
-                pd = new ProgressDialog(MakeEventActivity.this);
-                pd.setMessage("Please wait...");
-                pd.show();
-                registerEvent(finalName, finalDate, finalTime, finalDescription);
+                finalDate = eventTime.getText().toString();
+                finalDescription =eventDescription.getText().toString();
+                if(finalName.isEmpty() || finalDate.isEmpty() || finalTime.isEmpty() || !finalDescription.isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Unable to make event. All fields are required.", Toast.LENGTH_SHORT).show();
+                    eventName.setText("");
+                    eventDate.setText("");
+                    eventTime.setText("");
+                    eventDescription.setText("");
+                }
+                else
+                {
+                    pd = new ProgressDialog(MakeEventActivity.this);
+                    pd.setMessage("Please wait...");
+                    pd.show();
+                    registerEvent(finalName, finalDate, finalTime, finalDescription);
+                }
+
             }
         });
     }
@@ -172,10 +183,11 @@ public class MakeEventActivity extends AppCompatActivity {
         String userID = curr_user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         HashMap<String, Object> eventMap = new HashMap<>();
-        eventMap.put("name", finalName);
-        eventMap.put("when", finalDate +" at " + finalTime);
+        eventMap.put("name", eventName);
+        eventMap.put("when", eventDate +" at " + eventTime);
         eventMap.put("organizer", curr_user.getDisplayName());
-        eventMap.put("description", finalDescription);
+        eventMap.put("description", description);
+        eventMap.put("uID", userID);
 
         db.collection("events")
                 .add(eventMap)

@@ -14,18 +14,18 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/eventTimeCard"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
             android:maxLines="1"
-            android:layout_toStartOf="@id/eventNameCard"
+            android:layout_toStartOf="@id/datetime"
             android:layout_alignParentStart="true"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <TextView
-            android:id="@+id/eventNameCard"
+            android:id="@+id/datetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
@@ -33,19 +33,19 @@
             android:layout_alignParentEnd="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
         <TextView
-            android:id="@+id/eventDescription"
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:layout_below="@id/eventNameCard"
+            android:layout_below="@id/name"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         <TextView
-            android:id="@+id/eventOrganizer"
+            android:id="@+id/organizer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:text="Organizer"
-            android:layout_below="@id/eventDescription"/>
+            android:layout_below="@id/description"/>
 
     </RelativeLayout>
 

@@ -43,4 +43,5 @@ dependencies {
     //Events
     implementation 'com.firebaseui:firebase-ui-database:6.2.0'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.firebaseui:firebase-ui-firestore:4.1.0'
 }
