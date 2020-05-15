@@ -104,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                             map.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/instagramtest-fcbef.appspot.com/o/placeholder.png?alt=media&token=b09b809d-a5f8-499b-9563-5252262e9a49");
                             map.put("bio", "");
                             map.put("phone","");
+                            map.put("age","");
 
                             db.collection("users")
                                     .add(map)
