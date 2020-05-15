@@ -18,17 +18,15 @@
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
-
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImageView"
-            android:layout_width="400dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="0dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerInParent="true"
             android:onClick="handleImageClick"
-            app:srcCompat="@drawable/profile_pic" />
-
+            android:src="@drawable/ppp"
+            app:civ_border_color="@color/dark"
+            app:civ_border_width="2dp" />
 
     </RelativeLayout>
 
@@ -46,7 +44,7 @@
         android:drawableLeft="@android:drawable/stat_sys_upload"
         android:drawablePadding="10dp"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingRight="35dp"
         android:onClick="updateProfile"
         android:textColor="#FDFDFD"
         android:text="UPDATE PROFILE ACCOUNT" />
@@ -63,60 +61,117 @@
 
     <TextView
         android:id="@+id/account_info"
-        android:textColor="#FDFDFD"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/updateProfileButton"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="2dp"
-        android:textSize="30dp"
-        android:text="Account Information" />
+        android:layout_marginTop="-1dp"
+        android:text="Account Information"
+        android:textColor="#FDFDFD"
+        android:textSize="30dp" />
 
-    <EditText
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/updateProfileButton"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/account_info"
+        android:background="@drawable/button_round"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:paddingStart="10dp"
+        android:textColor="#FDFDFD" />
+
+    <TextView
+        android:id="@+id/fullname_text"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/account_info"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-6dp"
+        android:text="Name:"
+        android:textColor="#FDFDFD"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/age_text"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/account_info"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="266dp"
+        android:layout_marginTop="-5dp"
+        android:text="Age:"
+        android:textColor="#FDFDFD"
+        android:textSize="15dp" />
+
+    <TextView
         android:id="@+id/displayUserNameEditText"
-        android:textColor="#FDFDFD"
-        android:textColorHint="#FDFDFD"
-        android:layout_width="220dp"
-        android:layout_height="43dp"
-        android:layout_below="@+id/account_info"
+        android:layout_width="229dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/fullname_text"
+        android:layout_alignParentStart="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="-19dp"
+        android:layout_toRightOf="@+id/fullname"
         android:background="@drawable/edit_round"
-        android:hint="fullname"
-        android:paddingLeft="10dp" />
-    <EditText
-        android:id="@+id/displayAgeEditText"
+        android:hint="Full Name"
+        android:paddingStart="20dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="13dp"
         android:textColor="#FDFDFD"
         android:textColorHint="#FDFDFD"
-        android:layout_width="100dp"
-        android:layout_height="43dp"
+        android:textSize="20dp" />
+
+
+    <TextView
+        android:id="@+id/displayAgeEditText"
+        android:layout_width="72dp"
+        android:layout_height="63dp"
+        android:layout_above="@+id/displayNameEditText"
         android:layout_below="@+id/account_info"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="1dp"
+        android:layout_toEndOf="@+id/displayUserNameEditText"
         android:layout_toRightOf="@id/displayUserNameEditText"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="9dp"
         android:background="@drawable/edit_round"
         android:hint="Age"
-        android:paddingLeft="10dp" />
-
-    <EditText
-        android:id="@+id/displayNameEditText"
+        android:paddingStart="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
         android:textColor="#FDFDFD"
         android:textColorHint="#FDFDFD"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/displayNameEditText"
+        android:layout_width="400dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/displayUserNameEditText"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/edit_round"
         android:drawableLeft="@drawable/fui_ic_anonymous_white_24dp"
+        android:drawablePadding="15dp"
+        android:hint="Username"
+        android:padding="13dp"
         android:paddingLeft="10dp"
-        android:drawablePadding="10dp"
-        android:layout_width="400dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@+id/displayUserNameEditText"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="12dp"
-        android:hint="USERNAME" />
-
+        android:textColor="#FDFDFD"
+        android:paddingStart="5dp"
+        android:textColorHint="#FDFDFD"
+        android:textSize="19dp" />
 
     <EditText
         android:id="@+id/displayEmailEditText"
@@ -125,31 +180,34 @@
         android:background="@drawable/edit_round"
         android:drawableLeft="@drawable/fui_ic_mail_white_24dp"
         android:paddingLeft="10dp"
-        android:drawablePadding="10dp"
+        android:drawablePadding="18dp"
         android:layout_width="400dp"
-        android:layout_height="40dp"
+        android:layout_height="47dp"
         android:layout_marginEnd="10dp"
         android:layout_below="@+id/displayNameEditText"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:hint="EMAIL" />
+        android:layout_marginTop="5dp"
+        android:hint="Email"
+        android:textSize="19dp"/>
 
 
-    <EditText
+    <TextView
         android:id="@+id/displayPhoneEditText"
         android:textColor="#FDFDFD"
         android:textColorHint="#FDFDFD"
         android:background="@drawable/edit_round"
+        android:padding="10dp"
         android:drawableLeft="@drawable/fui_ic_phone_white_24dp"
         android:paddingLeft="10dp"
-        android:drawablePadding="10dp"
+        android:drawablePadding="15dp"
         android:layout_width="400dp"
-        android:layout_height="40dp"
+        android:layout_height="47dp"
         android:layout_marginEnd="10dp"
         android:layout_below="@+id/displayEmailEditText"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:hint="PHONE NUMBER" />
+        android:layout_marginTop="5dp"
+        android:hint="Phone Number"
+        android:textSize="19dp"/>
 
     <TextView
         android:id="@+id/bio_info"
@@ -160,41 +218,66 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="5dp"
-        android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:paddingLeft="0dp"
+        android:drawableLeft="@android:drawable/stat_notify_chat"
         android:drawablePadding="10dp"
+        android:paddingLeft="0dp"
         android:text="Biography: "
         android:textColor="#FDFDFD"
         android:textSize="20dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/displayDescriptionEditText"
-        android:textColor="#FDFDFD"
-        android:textColorHint="#FDFDFD"
-        android:background="@drawable/edit_text_border"
-        android:padding="10dp"
-        android:paddingLeft="10dp"
         android:layout_width="402dp"
-        android:layout_height="68dp"
+        android:layout_height="94dp"
         android:layout_below="@+id/bio_info"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="-2dp"
         android:layout_marginEnd="10dp"
-        android:ems="10"
+        android:background="@drawable/edit_text_border"
         android:hint="DESCRIPTION ...."
-        android:inputType="textMultiLine"/>
+        android:inputType="textMultiLine"
+        android:lines="6"
+        android:maxLines="6"
+        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:textColor="#FDFDFD"
+        android:textColorHint="#FDFDFD" />
 
     <Button
         android:id="@+id/back_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/displayDescriptionEditText"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/custom_button"
-        android:text="HOME"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_round"
+        android:drawableLeft="@android:drawable/ic_menu_revert"
         android:onClick="backButton"
+        android:paddingRight="10dp"
+        android:text="HOME"
+        android:textColor="#FDFDFD" />
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/displayDescriptionEditText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="162dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/back_btn"
+        android:background="@drawable/button_round"
+        android:drawableRight="@android:drawable/ic_menu_directions"
+        android:onClick="backButton"
+        android:paddingStart="10dp"
+        android:paddingRight="10dp"
+        android:text="LOGOUT"
         android:textColor="#FDFDFD" />
 
 

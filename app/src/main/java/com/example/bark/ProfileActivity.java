@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,30 +51,34 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity{
+public class ProfileActivity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
     private static final String TAG = "ProfileActivity";
-    private static final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String docId;
-    ImageView profileImageView;
-    EditText displayNameEditText;
-    EditText displayEmailEditText;
-    EditText displayPhoneEditText;
-    EditText displayDescriptionEditText;
-    EditText displayUserNameEditText;
-    EditText displayAgeEditText;
-    Button updateProfileButton;
-    Button back_btn;
-    ProgressBar progressBar;
+    private CircleImageView profileImageView;
+    private TextView displayNameEditText;
+    private EditText displayEmailEditText;
+    private TextView displayPhoneEditText;
+    private TextView displayDescriptionEditText;
+    private TextView displayUserNameEditText;
+    private TextView displayAgeEditText;
+    private Button updateProfileButton;
+    private Button back_btn;
+    private Button btnLogout;
+    private Button editButton;
+    private ProgressBar progressBar;
 
-    String DISPLAY_NAME = null;
-    String PHONENUMBER =  null;
-    String DESCRIPTION = null;
-    String NAME = null;
-    String EMAIL  = null;
-    String AGE = null;
-    String PROFILE_IMAGE_URL = null;
-    int TAKE_IMAGE_CODE = 10001;
+    private AlertDialog dialog;
+    private String DISPLAY_NAME = null;
+    private String PHONENUMBER =  null;
+    private String DESCRIPTION = null;
+    private String NAME = null;
+    private String EMAIL  = null;
+    private String AGE = null;
+    private String PROFILE_IMAGE_URL = null;
+    private int TAKE_IMAGE_CODE = 10001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +94,30 @@ public class ProfileActivity extends AppCompatActivity{
         displayAgeEditText = findViewById(R.id.displayAgeEditText);
         updateProfileButton = findViewById(R.id.updateProfileButton);
         back_btn = findViewById(R.id.back_btn);
+        btnLogout = findViewById(R.id.logoutBtn);
+        editButton = findViewById(R.id.editButton);
         progressBar = findViewById(R.id.progressBar);
 
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
 
+
+        final FirebaseAuth instance = FirebaseAuth.getInstance();
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Logging out.");
+                //logs user out using firebase
+                Log.d(TAG, "logging off: "+ instance);
+                signOut(instance);
+                goLoginActivity();
+            }
+        });
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         if (user != null) {
@@ -142,6 +168,39 @@ public class ProfileActivity extends AppCompatActivity{
 
     }
 
+    public void openDialog(){
+        ExampleDialog exampleDialog = new ExampleDialog();
+        exampleDialog.show(getSupportFragmentManager(), "exampledialog");
+    }
+
+    @Override
+    public void applyTexts(String fullname, String username, String phone, String age, String bio) {
+        displayUserNameEditText.setText(fullname);
+        displayNameEditText.setText(username);
+        displayPhoneEditText.setText(phone);
+        displayAgeEditText.setText(age);
+        displayDescriptionEditText.setText(bio);
+
+    }
+
+    public void goLoginActivity()
+    {
+        //kicks user back out to the login page.
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+        startActivity(intent);
+        intent.putExtra("finish", true);
+        // allows us to clear the activities that were being held in the stack prior to logging out
+        // this means that the user cannot do a 'shadow login' when they hit back after signing out and be
+        // signed in as a 'null' user
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+    private void signOut(FirebaseAuth instance)
+    {
+        instance.signOut();
+    }
     public void backButton(final View view){
         Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
         startActivity(intent);
