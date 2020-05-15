@@ -82,13 +82,13 @@ public class EventsFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), MakeEventActivity.class);
                 startActivity(intent);
-                Toast.makeText(getContext(),"Attempting to create new event", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(),"Attempting to create new event", Toast.LENGTH_SHORT).show();
             }
         });
     }
     private void setUpRecyclerView(View view)
     {
-        Query query = eventRef.orderBy("when", Query.Direction.DESCENDING);
+        Query query = eventRef.orderBy("datetime", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Event> options = new FirestoreRecyclerOptions.Builder<Event>()
                 .setQuery(query, Event.class)
