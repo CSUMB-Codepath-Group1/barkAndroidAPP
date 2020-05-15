@@ -1,5 +1,6 @@
 package com.example.bark;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -39,11 +40,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -56,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity{
     EditText displayEmailEditText;
     EditText displayPhoneEditText;
     EditText displayDescriptionEditText;
-    EditText displayUserNameEditText;
+    TextView displayUserNameEditText;
     Button updateProfileButton;
     ProgressBar progressBar;
 
@@ -190,11 +193,29 @@ public class ProfileActivity extends AppCompatActivity{
     //Handle Image Click (OnClick Listener)
     public void handleImageClick(View view) {
         //Take an image from the App. Start a new Intent to for Capturing an image.
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent, TAKE_IMAGE_CODE);
-        }
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose your profile picture");
+
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(options[which].equals("Take Photo")) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivityForResult(intent, TAKE_IMAGE_CODE);
+                    }
+                }
+                else if (options[which].equals("Choose from Gallery")){
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(pickPhoto , 1);
+                }
+                else if(options[which].equals("Cancel")){
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 
     @Override
@@ -207,6 +228,22 @@ public class ProfileActivity extends AppCompatActivity{
                     //Set Image to your Profile
                     profileImageView.setImageBitmap(bitmap);
                     //Save Profile Image to FireBase
+                    handleUpload(bitmap);
+            }
+        }
+        if (requestCode == 1) {
+            switch (resultCode) {
+                case RESULT_OK:
+                    Bitmap bitmap = null;
+                    if (data != null) {
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                        } catch (IOException e) {
+                            //Toast.makeText(AddPostActivity.this, "Error, " + e, Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                    profileImageView.setImageBitmap(bitmap);
                     handleUpload(bitmap);
             }
         }

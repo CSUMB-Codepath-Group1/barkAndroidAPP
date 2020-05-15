@@ -37,13 +37,18 @@
         android:id="@+id/updateProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/constraint"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="21dp"
         android:layout_marginEnd="13dp"
-        android:layout_below="@+id/constraint"
-        android:text="UPDATE PROFILE ACCOUNT"
-        android:onClick="updateProfile"/>
+        android:background="@drawable/button_round"
+        android:drawableLeft="@android:drawable/stat_sys_upload"
+        android:drawablePadding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:onClick="updateProfile"
+        android:text="UPDATE PROFILE ACCOUNT" />
 
 
     <ProgressBar
@@ -69,89 +74,79 @@
         android:gravity="center"
         android:text="Account Information" />
 
-    <EditText
+    <TextView
         android:id="@+id/displayUserNameEditText"
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="43dp"
         android:layout_below="@+id/account_info"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="35dp"
-        android:hint="FULLNAME" />
-
-    <ImageView
-        android:id="@+id/username_logo"
-        android:layout_width="54dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/displayUserNameEditText"
-        android:layout_marginTop="14dp"
-        app:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/edit_round"
+        android:hint="FULLNAME"
+        android:paddingLeft="10dp" />
 
     <EditText
         android:id="@+id/displayNameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:background="@drawable/edit_round"
+        android:drawableLeft="@drawable/fui_ic_anonymous_white_24dp"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
+        android:layout_width="400dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="10dp"
         android:layout_below="@+id/displayUserNameEditText"
         android:layout_marginStart="5dp"
         android:layout_marginTop="12dp"
-        android:layout_toEndOf="@+id/username_logo"
         android:hint="USERNAME" />
 
-    <ImageView
-        android:id="@+id/email_logo"
-        android:layout_width="54dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/username_logo"
-        android:layout_marginTop="13dp"
-        app:srcCompat="@drawable/fui_ic_mail_white_24dp" />
 
     <EditText
         android:id="@+id/displayEmailEditText"
-        android:layout_width="match_parent"
+        android:background="@drawable/edit_round"
+        android:drawableLeft="@drawable/fui_ic_mail_white_24dp"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
+        android:layout_width="400dp"
         android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
         android:layout_below="@+id/displayNameEditText"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/email_logo"
         android:hint="EMAIL" />
 
-    <ImageView
-        android:id="@+id/phone_logo"
-        android:layout_width="55dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/email_logo"
-        android:layout_marginTop="15dp"
-        app:srcCompat="@drawable/fui_ic_phone_white_24dp" />
 
     <EditText
         android:id="@+id/displayPhoneEditText"
-        android:layout_width="match_parent"
+        android:background="@drawable/edit_round"
+        android:drawableLeft="@drawable/fui_ic_phone_white_24dp"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
+        android:layout_width="400dp"
         android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
         android:layout_below="@+id/displayEmailEditText"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="7dp"
-        android:layout_toEndOf="@+id/phone_logo"
+        android:layout_marginTop="10dp"
         android:hint="PHONE NUMBER" />
 
-    <ImageView
-        android:id="@+id/description_logo"
-        android:layout_width="55dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/phone_logo"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-
+<!--<ImageView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    />-->
     <EditText
         android:id="@+id/displayDescriptionEditText"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:background="@drawable/edit_round"
+        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:layout_width="402dp"
+        android:layout_height="68dp"
         android:layout_below="@+id/displayPhoneEditText"
-        android:layout_toEndOf="@+id/description_logo"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
-        android:hint="DESCRIPTION ...."/>
+        android:hint="DESCRIPTION ...."
+        android:inputType="textMultiLine"/>
 
 
 </RelativeLayout>
