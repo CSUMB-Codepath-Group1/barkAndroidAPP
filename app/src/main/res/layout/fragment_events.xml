@@ -34,12 +34,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         app:backgroundTint="@color/colorPrimary"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:background="@drawable/custom_button"
         android:text="LOGOUT" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/newEvent"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/mainColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
