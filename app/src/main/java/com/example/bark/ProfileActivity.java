@@ -1,5 +1,6 @@
 package com.example.bark;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -59,7 +60,8 @@ public class ProfileActivity extends AppCompatActivity{
     EditText displayEmailEditText;
     EditText displayPhoneEditText;
     EditText displayDescriptionEditText;
-    TextView displayUserNameEditText;
+    EditText displayUserNameEditText;
+    EditText displayAgeEditText;
     Button updateProfileButton;
     ProgressBar progressBar;
 
@@ -68,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity{
     String DESCRIPTION = null;
     String NAME = null;
     String EMAIL  = null;
+    String AGE = null;
     String PROFILE_IMAGE_URL = null;
     int TAKE_IMAGE_CODE = 10001;
 
@@ -82,6 +85,7 @@ public class ProfileActivity extends AppCompatActivity{
         displayPhoneEditText = findViewById(R.id.displayPhoneEditText);
         displayDescriptionEditText = findViewById(R.id.displayDescriptionEditText);
         displayUserNameEditText = findViewById(R.id.displayUserNameEditText);
+        displayAgeEditText = findViewById(R.id.displayAgeEditText);
         updateProfileButton = findViewById(R.id.updateProfileButton);
         progressBar = findViewById(R.id.progressBar);
 
@@ -119,6 +123,8 @@ public class ProfileActivity extends AppCompatActivity{
                                         displayDescriptionEditText.setText(DESCRIPTION);
                                         NAME = document.get("fullname").toString();
                                         displayUserNameEditText.setText(NAME);
+                                        AGE = document.get("age").toString();
+                                        displayAgeEditText.setText(AGE);
                                         Log.d(TAG, document.get("id") + " " + user.getUid());
                                     }
                                 }
@@ -141,17 +147,22 @@ public class ProfileActivity extends AppCompatActivity{
         DESCRIPTION = displayDescriptionEditText.getText().toString();
         EMAIL =  displayEmailEditText.getText().toString();
         NAME = displayUserNameEditText.getText().toString();
+        AGE = displayAgeEditText.getText().toString();
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final DocumentReference docRef = FirebaseFirestore.getInstance()
                 .collection("users")
                 .document(docId);
 
+        Uri imageUrl = firebaseUser.getPhotoUrl();
+
         Map <String, Object> profileInfo = new HashMap<>();
         profileInfo.put("username", DISPLAY_NAME);
         profileInfo.put("fullname", NAME);
         profileInfo.put("phone", PHONENUMBER);
         profileInfo.put("bio", DESCRIPTION);
+        profileInfo.put("age", AGE);
+        profileInfo.put("imageurl", imageUrl.toString());
 
         docRef.update(profileInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -263,12 +274,13 @@ public class ProfileActivity extends AppCompatActivity{
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         getDownloadUrl(reference);
+                        Log.e(TAG, "onSuccess: uploaded profile pic");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: ",e.getCause() );
+                        Log.e(TAG, "onFailure: ", e.getCause() );
                     }
                 });
     }
@@ -286,7 +298,6 @@ public class ProfileActivity extends AppCompatActivity{
 
     private void setUserProfileUrl(Uri uri) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setPhotoUri(uri)
                 .build();
@@ -304,5 +315,6 @@ public class ProfileActivity extends AppCompatActivity{
                         Toast.makeText(ProfileActivity.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
                     }
                 });
+
     }
 }
