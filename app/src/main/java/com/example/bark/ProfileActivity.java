@@ -63,6 +63,7 @@ public class ProfileActivity extends AppCompatActivity{
     EditText displayUserNameEditText;
     EditText displayAgeEditText;
     Button updateProfileButton;
+    Button back_btn;
     ProgressBar progressBar;
 
     String DISPLAY_NAME = null;
@@ -87,7 +88,10 @@ public class ProfileActivity extends AppCompatActivity{
         displayUserNameEditText = findViewById(R.id.displayUserNameEditText);
         displayAgeEditText = findViewById(R.id.displayAgeEditText);
         updateProfileButton = findViewById(R.id.updateProfileButton);
+        back_btn = findViewById(R.id.back_btn);
         progressBar = findViewById(R.id.progressBar);
+
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         if (user != null) {
@@ -136,6 +140,11 @@ public class ProfileActivity extends AppCompatActivity{
         }
         progressBar.setVisibility(View.GONE);
 
+    }
+
+    public void backButton(final View view){
+        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void updateProfile (final View view) {

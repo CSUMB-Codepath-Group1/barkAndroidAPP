@@ -23,9 +23,9 @@
             android:id="@+id/profileImageView"
             android:layout_width="400dp"
             android:layout_height="150dp"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="0dp"
             android:onClick="handleImageClick"
             app:srcCompat="@drawable/profile_pic" />
 
@@ -151,10 +151,6 @@
         android:layout_marginTop="10dp"
         android:hint="PHONE NUMBER" />
 
-<!--<ImageView-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    />-->
     <TextView
         android:id="@+id/bio_info"
         android:layout_width="wrap_content"
@@ -164,6 +160,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="5dp"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:paddingLeft="0dp"
+        android:drawablePadding="10dp"
         android:text="Biography: "
         android:textColor="#FDFDFD"
         android:textSize="20dp" />
@@ -172,7 +171,7 @@
         android:id="@+id/displayDescriptionEditText"
         android:textColor="#FDFDFD"
         android:textColorHint="#FDFDFD"
-        android:background="@drawable/edit_round"
+        android:background="@drawable/edit_text_border"
         android:padding="10dp"
         android:paddingLeft="10dp"
         android:layout_width="402dp"
@@ -183,6 +182,20 @@
         android:ems="10"
         android:hint="DESCRIPTION ...."
         android:inputType="textMultiLine"/>
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/displayDescriptionEditText"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/custom_button"
+        android:text="HOME"
+        android:onClick="backButton"
+        android:textColor="#FDFDFD" />
 
 
 </RelativeLayout>
