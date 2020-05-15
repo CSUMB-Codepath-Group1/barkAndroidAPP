@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/mainColor">
 
 
     <EditText
+
         android:id="@+id/eventName"
+
         android:layout_width="match_parent"
         android:maxLines="1"
         android:layout_height="wrap_content"
@@ -16,6 +20,7 @@
 
     <EditText
         android:id="@+id/chooseDate"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -53,6 +58,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="Submit Event" />
+        android:text="Submit Event"
+        app:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"/>
 
 </LinearLayout>
