@@ -47,9 +47,13 @@ public class PostAdapter extends FirestoreRecyclerAdapter<Post, PostAdapter.Post
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult())
-                                model.setUserImage(document.get("imageurl").toString());
-                                Picasso.get().load(model.getUserImage()).into(holder.userImage);
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                if(model.getuName().equals(document.get("username"))) {
+                                    model.setUserImage(document.get("imageurl").toString());
+                                    Picasso.get().load(model.getUserImage()).into(holder.userImage);
+                                }
+                            }
+
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

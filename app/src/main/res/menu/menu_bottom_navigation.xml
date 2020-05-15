@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_compose"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/ic_add_location_black_24dp"
         android:title="Events"
         app:showAsAction="always" />
     <item
