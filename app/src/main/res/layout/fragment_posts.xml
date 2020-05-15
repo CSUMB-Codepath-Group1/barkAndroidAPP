@@ -12,14 +12,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/ic_add"
+        android:backgroundTint="@color/colorPrimary"/>
     <Button
         android:layout_marginTop="5dp"
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="logout"
-        android:layout_marginLeft="300dp"/>
+        android:layout_marginLeft="300dp"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/nav_color"/>
 
     <TextView
         android:textColor="#fff"

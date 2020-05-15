@@ -88,7 +88,7 @@ public class EventsFragment extends Fragment {
     }
     private void setUpRecyclerView(View view)
     {
-        Query query = eventRef.orderBy("name", Query.Direction.DESCENDING);
+        Query query = eventRef.orderBy("when", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Event> options = new FirestoreRecyclerOptions.Builder<Event>()
                 .setQuery(query, Event.class)

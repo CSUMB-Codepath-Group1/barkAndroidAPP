@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddPostActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#000111"
+    >
 
     <TextView
         android:id="@+id/textView"
@@ -14,9 +16,11 @@
         android:text="Make new post"
         android:textAlignment="center"
         android:textSize="30dp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
+        android:backgroundTint="@color/white"
+        android:textColorHint="@color/white"
         android:ems="10"
         android:id="@+id/etDescription"
         android:layout_width="match_parent"
@@ -30,23 +34,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Take Picture"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"/>
 
     <ImageView
         android:id="@+id/ivPostImage"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:background="@color/colorPrimary"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:background="@drawable/bacround_gradient"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnSubmit"
         android:text="Add Post"
-        android:textSize="18dp"/>
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/custom_button"/>
 
     <TextView
         android:paddingTop="15dp"
@@ -57,7 +67,7 @@
         android:textSize="25dp"
         android:textAlignment="center"
         android:paddingBottom="10dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         />
 
 </LinearLayout>
